@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="body">
+    <form action="/register" method="post">
+        <h1>Registation</h1>
+        {% csrf_token %}
+        <p>First Name:<input type="text" name="fname"></p>
+        <p>Last Name:<input type="text" name="lname"></p>
+        <p>Email: <input type="email" name="email"></p>
+        <p>Password:<input type="password" name="pwd"></p>
+        <p>Confirm pw:      <input type="password" name="cpwd"></p>
+        <p><input type="submit" value="Register" class="butt"></p>
+    </form>
+    <form action="/login" method="post">
+        <h1>Login</h1>
+        {% csrf_token %}
+        <p>Email: <input type="email" name="email"></p>
+        <p>Password:   <input type="password" name="pwd"></p>
+        <p><input type="submit" value="Register" class="butt"></p>
+    </form>
+</div>
+    {% if messages %}
+<ul class="messages">    
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+</ul>
+{% endif %}
+
+</body>
+</html>

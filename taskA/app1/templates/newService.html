@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            margin-left: 40px;
+        }
+        p{
+            display: flex;
+            width: 350px;
+            justify-content: space-between;
+            
+        }
+        .but{
+            background-color: whitesmoke;
+            border: 2px solid black;
+            margin-left: 40px;
+        }
+        
+    nav{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        border-bottom: 3px solid black;
+    }
+    nav a, nav div,nav h1{
+        margin-right: 15px;
+    }
+    nav div{
+            width: 60px;
+            height: 20px;
+            background-color: whitesmoke;
+            border: 2px solid black;
+            box-shadow: 2px 2px 1px black;
+        }
+        nav div a{
+            color:  black;
+            text-decoration: none;
+        }
+</style>
+<body>
+    
+        <nav>
+            
+        
+            <a href="/dashboord">Dashboord</a>
+            <!-- كمل لنك للداش بوورد -->
+
+            <div><a href="/logout">logout</a></div>
+
+            
+            
+        </nav>
+    
+
+    <main>
+        <h1>Add Customer</h1>
+        <form action="/addService" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="user" value={{theUser}}>
+
+            <p>service name: <input type="text" name="name"></p>
+            <p>Description: <input type="text" name="desc"></p>
+            <p>price: <input type="text" name="price"></p>
+            <p>Active: <select name="isActive" id="isActive">
+                <option value="t">on</option>
+                <option value="f">off</option>
+            </select></p>
+            
+            <p><input type="submit" value="Submit" class="btn"> </p>
+        </form>
+    </main>
+    <div>
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
